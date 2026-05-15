@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Fiora Nur Aurelia 🎂</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --pink: #ff6eb4;
+        --lavender: #b388ff;
+        --mint: #4dd0c4;
+        --peach: #ffb347;
+        --coral: #ff7f7f;
+        --sky: #64c8ff;
+        --lemon: #ffe066;
+        --bg: #fff5fb;
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        background: var(--bg);
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      /* ---- CANVAS CONFETTI ---- */
+      #confetti-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ---- FLOATING BALLOONS ---- */
+      .balloons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .balloon {
+        position: absolute;
+        bottom: -120px;
+        width: 60px;
+        animation: floatUp linear infinite;
+      }
+      .balloon svg {
+        width: 100%;
+      }
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) rotate(-5deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-110vh) rotate(5deg);
+          opacity: 0;
+        }
+      }
+
+      /* ---- PAGE WRAPPER ---- */
+      .page {
+        position: relative;
+        z-index: 1;
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      /* ---- HERO SECTION ---- */
+      .hero {
+        text-align: center;
+        padding: 3rem 1rem 2rem;
+        position: relative;
+      }
+
+      .stars-deco {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-around;
+        padding: 0 2rem;
+        pointer-events: none;
+      }
+      .star {
+        font-size: 1.8rem;
+        animation: twinkle 2s ease-in-out infinite;
+      }
+      .star:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      .star:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .star:nth-child(4) {
+        animation-delay: 0.9s;
+      }
+      .star:nth-child(5) {
+        animation-delay: 1.2s;
+      }
+      .star:nth-child(6) {
+        animation-delay: 1.5s;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.3) rotate(20deg);
+          opacity: 0.7;
+        }
+      }
+
+      .badge-age {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--pink), var(--lavender));
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 900;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.45rem 1.4rem;
+        border-radius: 999px;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 4px 18px rgba(179, 136, 255, 0.35);
+        animation: pulse 2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.04);
+        }
+      }
+
+      .greeting {
+        font-family: "Pacifico", cursive;
+        font-size: clamp(2.4rem, 7vw, 4.2rem);
+        line-height: 1.15;
+        background: linear-gradient(
+          135deg,
+          var(--pink) 0%,
+          var(--lavender) 40%,
+          var(--sky) 70%,
+          var(--mint) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+        animation: shimmer 3s linear infinite;
+        background-size: 200% auto;
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: 0% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      .name {
+        font-family: "Pacifico", cursive;
+        font-size: clamp(2rem, 6vw, 3.6rem);
+        color: var(--coral);
+        text-shadow:
+          3px 3px 0 rgba(255, 127, 127, 0.25),
+          6px 6px 0 rgba(255, 127, 127, 0.1);
+        margin-bottom: 1.2rem;
+        animation: nameBounce 1.5s ease-in-out infinite;
+      }
+      @keyframes nameBounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      .cake-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 3.5rem;
+        margin: 1rem 0;
+        animation: cakeSpin 4s ease-in-out infinite;
+      }
+      @keyframes cakeSpin {
+        0%,
+        100% {
+          transform: rotate(-3deg) scale(1);
+        }
+        50% {
+          transform: rotate(3deg) scale(1.08);
+        }
+      }
+
+      .message {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #7b5ea7;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        line-height: 1.7;
+      }
+
+      /* ---- DIVIDER ---- */
+      .divider {
+        text-align: center;
+        font-size: 1.6rem;
+        letter-spacing: 0.5rem;
+        margin: 1.5rem 0;
+        color: var(--peach);
+      }
+
+      /* ---- PHOTO SECTION ---- */
+      .section-title {
+        font-family: "Pacifico", cursive;
+        font-size: 1.8rem;
+        text-align: center;
+        color: var(--lavender);
+        margin-bottom: 0.4rem;
+      }
+      .section-sub {
+        text-align: center;
+        color: #9e8eaa;
+        font-size: 0.95rem;
+        margin-bottom: 1.8rem;
+        font-weight: 600;
+      }
+
+      /* ---- UPLOAD ZONE ---- */
+      .upload-zone {
+        border: 3px dashed var(--lavender);
+        border-radius: 20px;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        background: rgba(179, 136, 255, 0.07);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          transform 0.15s;
+        margin-bottom: 2rem;
+        position: relative;
+      }
+      .upload-zone:hover,
+      .upload-zone.drag-over {
+        background: rgba(179, 136, 255, 0.15);
+        border-color: var(--pink);
+        transform: scale(1.015);
+      }
+      .upload-zone input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+      .upload-icon {
+        font-size: 3rem;
+        margin-bottom: 0.6rem;
+      }
+      .upload-text {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7b5ea7;
+      }
+      .upload-hint {
+        font-size: 0.85rem;
+        color: #b0a0c0;
+        margin-top: 0.3rem;
+      }
+
+      /* ---- PHOTO GRID ---- */
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .photo-card {
+        border-radius: 18px;
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 1;
+        box-shadow: 0 6px 24px rgba(179, 136, 255, 0.2);
+        border: 4px solid #fff;
+        animation: photoIn 0.4s ease-out both;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .photo-card:hover {
+        transform: scale(1.04) rotate(1deg);
+        box-shadow: 0 12px 36px rgba(179, 136, 255, 0.35);
+      }
+      @keyframes photoIn {
+        from {
+          opacity: 0;
+          transform: scale(0.85) rotate(-4deg);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) rotate(0deg);
+        }
+      }
+
+      .photo-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* random border colors */
+      .photo-card:nth-child(4n + 1) {
+        border-color: var(--pink);
+      }
+      .photo-card:nth-child(4n + 2) {
+        border-color: var(--lavender);
+      }
+      .photo-card:nth-child(4n + 3) {
+        border-color: var(--mint);
+      }
+      .photo-card:nth-child(4n + 4) {
+        border-color: var(--peach);
+      }
+
+      .photo-card .remove-btn {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+        color: #e53935;
+        font-weight: 900;
+      }
+      .photo-card:hover .remove-btn {
+        opacity: 1;
+      }
+
+      .photo-card .caption-badge {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 0.6rem 0.5rem 0.4rem;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .photo-card:hover .caption-badge {
+        opacity: 1;
+      }
+
+      /* ---- CAPTION MODAL ---- */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(50, 20, 80, 0.65);
+        backdrop-filter: blur(6px);
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal-box {
+        background: #fff;
+        border-radius: 24px;
+        padding: 2rem;
+        max-width: 480px;
+        width: 90%;
+        box-shadow: 0 24px 80px rgba(100, 50, 150, 0.3);
+        text-align: center;
+        animation: modalIn 0.3s ease-out;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: scale(0.88) translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      .modal-box img {
+        width: 100%;
+        border-radius: 14px;
+        margin-bottom: 1rem;
+        object-fit: cover;
+        max-height: 280px;
+      }
+      .modal-box input[type="text"] {
+        width: 100%;
+        padding: 0.7rem 1rem;
+        border: 2px solid var(--lavender);
+        border-radius: 12px;
+        font-size: 1rem;
+        font-family: "Nunito", sans-serif;
+        outline: none;
+        margin-bottom: 1rem;
+        color: #5b3fa0;
+        font-weight: 700;
+      }
+      .modal-box input:focus {
+        border-color: var(--pink);
+      }
+      .btn-row {
+        display: flex;
+        gap: 0.7rem;
+        justify-content: center;
+      }
+      .btn {
+        padding: 0.6rem 1.5rem;
+        border: none;
+        border-radius: 999px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 800;
+        cursor: pointer;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn-save {
+        background: linear-gradient(135deg, var(--pink), var(--lavender));
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(179, 136, 255, 0.4);
+      }
+      .btn-cancel {
+        background: #f3eeff;
+        color: #7b5ea7;
+      }
+
+      /* ---- LIGHTBOX ---- */
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 5, 30, 0.88);
+        z-index: 300;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .lightbox.open {
+        display: flex;
+      }
+      .lightbox img {
+        max-width: 90vw;
+        max-height: 80vh;
+        border-radius: 16px;
+        object-fit: contain;
+      }
+      .lightbox .lb-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 2rem;
+        color: #fff;
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-weight: 900;
+      }
+      .lightbox .lb-caption {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        letter-spacing: 0.03em;
+      }
+
+      /* ---- FOOTER ---- */
+      .footer {
+        text-align: center;
+        margin-top: 3rem;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #c0a8e0;
+        line-height: 2;
+      }
+      .footer span {
+        font-size: 1.3rem;
+      }
+
+      /* ---- NO PHOTOS STATE ---- */
+      .no-photos {
+        text-align: center;
+        padding: 2rem;
+        color: #c0a8e0;
+        font-size: 1rem;
+        font-weight: 700;
+        display: none;
+      }
+
+      /* ---- MUSIC BTN ---- */
+      .music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--pink), var(--lavender));
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 20px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 800;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(179, 136, 255, 0.4);
+        z-index: 100;
+        transition: transform 0.2s;
+      }
+      .music-btn:hover {
+        transform: scale(1.05);
+      }
+
+      /* ---- EMPTY PLACEHOLDER CARDS ---- */
+      .placeholder-card {
+        border-radius: 18px;
+        aspect-ratio: 1;
+        background: linear-gradient(135deg, #f3eeff, #fff0fa);
+        border: 4px dashed #e0c8f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: #c0a8e0;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+      .placeholder-card .ph-icon {
+        font-size: 2.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="balloons" id="balloons"></div>
+
+    <!-- MUSIC -->
+    <div
+      id="ytplayer"
+      style="position: absolute; top: -9999px; left: -9999px"
+    ></div>
+    <button id="musicToggle" class="music-btn">🎵 Tunggu Sebentar...</button>
+
+    <div class="page">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="stars-deco">
+          <span class="star">✨</span>
+          <span class="star">🌟</span>
+          <span class="star">⭐</span>
+          <span class="star">🌟</span>
+          <span class="star">✨</span>
+          <span class="star">⭐</span>
+        </div>
+
+        <div class="badge-age">🎂 1 Tahun 🎂</div>
+
+        <div class="greeting">Selamat Ulang Tahun</div>
+        <div class="name">Fiora Nur Aurelia</div>
+
+        <div class="cake-wrap">🎀 🎂 🎉</div>
+
+        <p class="message">
+          Satu tahun penuh cinta, tawa, dan keajaiban kecil setiap harinya.<br />
+          Semoga Fiora tumbuh sehat, bahagia, dan selalu bersinar ✨<br />
+          <strong>Kami sangat mencintaimu, Sayang! 💕</strong>
+        </p>
+      </section>
+
+      <div class="divider">🌈 · 🦋 · 🌸 · 🦋 · 🌈</div>
+
+      <!-- PHOTO GALLERY -->
+      <div class="section-title">📸 Momen Berharga Fiora</div>
+      <p class="section-sub">
+        Klik foto untuk menambahkan keterangan · Klik foto untuk memperbesar
+      </p>
+
+      <!-- Upload Zone -->
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept="image/*" multiple />
+        <div class="upload-icon">🖼️</div>
+        <div class="upload-text">Klik atau seret foto ke sini</div>
+        <div class="upload-hint">
+          Mendukung JPG, PNG, WEBP · Bisa pilih banyak sekaligus
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="photo-grid" id="photoGrid">
+        <!-- placeholder cards -->
+        <div class="placeholder-card">
+          <span class="ph-icon">🌸</span>Foto pertama<br />Fiora
+        </div>
+        <div class="placeholder-card">
+          <span class="ph-icon">🎈</span>Momen lucu<br />favoritmu
+        </div>
+        <div class="placeholder-card">
+          <span class="ph-icon">🦋</span>Senyum<br />manisnya
+        </div>
+        <div class="placeholder-card">
+          <span class="ph-icon">⭐</span>Foto<br />keluarga
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        <div><span>🎀</span> Happy 1st Birthday, Fiora! <span>🎀</span></div>
+        <div>Semoga hidupmu selalu dipenuhi warna-warni kebahagiaan 🌈</div>
+        <div style="margin-top: 0.5rem; color: #e8a0d0">
+          15 Mei 2025 – 15 Mei 2026
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPTION MODAL -->
+    <div class="modal-overlay" id="captionModal">
+      <div class="modal-box">
+        <img id="modalImg" src="" alt="" />
+        <input
+          type="text"
+          id="captionInput"
+          placeholder="Tuliskan keterangan foto… 💕"
+          maxlength="80"
+        />
+        <div class="btn-row">
+          <button class="btn btn-cancel" id="btnCancel">Tutup</button>
+          <button class="btn btn-save" id="btnSave">💾 Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+      <button class="lb-close" id="lbClose">✕</button>
+      <img id="lbImg" src="" alt="" />
+      <div class="lb-caption" id="lbCaption"></div>
+    </div>
+
+    <script>
+      /* =================== CONFETTI =================== */
+      const canvas = document.getElementById("confetti-canvas");
+      const ctx = canvas.getContext("2d");
+      const COLORS = [
+        "#FF6EB4",
+        "#B388FF",
+        "#4DD0C4",
+        "#FFB347",
+        "#FF7F7F",
+        "#64C8FF",
+        "#FFE066",
+        "#A8E6CF",
+      ];
+      let pieces = [];
+      let W, H;
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener("resize", resize);
+
+      class Piece {
+        constructor() {
+          this.reset(true);
+        }
+        reset(init) {
+          this.x = Math.random() * W;
+          this.y = init ? Math.random() * H : -20;
+          this.r = 4 + Math.random() * 6;
+          this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+          this.vy = 1 + Math.random() * 2.5;
+          this.vx = (Math.random() - 0.5) * 1.2;
+          this.angle = Math.random() * Math.PI * 2;
+          this.spin = (Math.random() - 0.5) * 0.12;
+          this.shape = Math.random() > 0.5 ? "rect" : "circle";
+        }
+        update() {
+          this.y += this.vy;
+          this.x += this.vx;
+          this.angle += this.spin;
+          if (this.y > H + 20) this.reset(false);
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.angle);
+          ctx.fillStyle = this.color;
+          ctx.globalAlpha = 0.85;
+          if (this.shape === "circle") {
+            ctx.beginPath();
+            ctx.arc(0, 0, this.r, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.fillRect(-this.r, -this.r / 2, this.r * 2, this.r);
+          }
+          ctx.restore();
+        }
+      }
+
+      for (let i = 0; i < 120; i++) pieces.push(new Piece());
+
+      function animate() {
+        ctx.clearRect(0, 0, W, H);
+        pieces.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      /* =================== BALLOONS =================== */
+      const balloonsWrap = document.getElementById("balloons");
+      const balloonColors = [
+        "#FF6EB4",
+        "#B388FF",
+        "#4DD0C4",
+        "#FFB347",
+        "#64C8FF",
+        "#FF7F7F",
+        "#FFE066",
+      ];
+      function createBalloon() {
+        const el = document.createElement("div");
+        el.className = "balloon";
+        const col =
+          balloonColors[Math.floor(Math.random() * balloonColors.length)];
+        const left = 5 + Math.random() * 90;
+        const dur = 8 + Math.random() * 10;
+        const delay = Math.random() * 12;
+        const size = 40 + Math.random() * 40;
+        el.style.cssText = `left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s;width:${size}px;`;
+        el.innerHTML = `<svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="30" cy="28" rx="22" ry="26" fill="${col}" opacity=".85"/>
+    <ellipse cx="22" cy="18" rx="6" ry="8" fill="rgba(255,255,255,.3)"/>
+    <polygon points="28,54 32,54 30,60" fill="${col}" opacity=".85"/>
+    <line x1="30" y1="60" x2="30" y2="78" stroke="${col}" stroke-width="1.5"/>
+  </svg>`;
+        balloonsWrap.appendChild(el);
+      }
+      for (let i = 0; i < 18; i++) createBalloon();
+
+      /* =================== AUDIO (YOUTUBE) =================== */
+      let player;
+      let isMusicPlaying = false;
+      const musicToggle = document.getElementById("musicToggle");
+
+      // Load the IFrame Player API code asynchronously.
+      var tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player("ytplayer", {
+          height: "0",
+          width: "0",
+          // Menggunakan video lagu "Selamat Ulang Tahun" Anak yang populer
+          videoId: "jwwqZ7PRZLI", // ID video YouTube pilihan Anda
+          playerVars: {
+            autoplay: 0,
+            controls: 0,
+            loop: 1,
+            playlist: "jwwqZ7PRZLI", // Diperlukan agar loop berfungsi
+            start: 20, // Mulai dari menit 0:20
+          },
+          events: {
+            onReady: onPlayerReady,
+            onError: onPlayerError,
+          },
+        });
+      }
+
+      function onPlayerReady(event) {
+        musicToggle.innerHTML = "🎵 Play Music";
+        musicToggle.addEventListener("click", () => {
+          if (isMusicPlaying) {
+            player.pauseVideo();
+            musicToggle.innerHTML = "🎵 Play Music";
+          } else {
+            player.playVideo();
+            musicToggle.innerHTML = "⏸️ Pause Music";
+          }
+          isMusicPlaying = !isMusicPlaying;
+        });
+      }
+
+      function onPlayerError(event) {
+        alert(
+          "Maaf, lagu dari YouTube tidak dapat diputar. Cobalah ID video yang berbeda.",
+        );
+        musicToggle.innerHTML = "🎵 Error Lagu";
+      }
+
+      /* =================== PHOTO GALLERY =================== */
+      const grid = document.getElementById("photoGrid");
+      const fileInput = document.getElementById("fileInput");
+      const uploadZone = document.getElementById("uploadZone");
+
+      // PANDUAN UNTUK GITHUB PAGES:
+      // Jika ingin foto langsung ada saat web dibuka (tanpa harus upload manual tiap kali refresh),
+      // Hapus `let photos = [];` di bawah, lalu ganti menjadi seperti ini:
+      //
+      // let photos = [
+      //   { id: '1', src: 'foto1.jpg', caption: 'Momen pertama Fiora 💕' },
+      //   { id: '2', src: 'foto2.jpg', caption: 'Senyum manisnya' },
+      //   { id: '3', src: 'foto3.png', caption: 'Foto keluarga' }
+      // ];
+      //
+      // Pastikan file foto1.jpg, foto2.jpg diletakkan di folder yang sama dengan file HTML ini saat di-push ke GitHub.
+      let photos = []; // {id, src, caption}
+
+      const captionModal = document.getElementById("captionModal");
+      const modalImg = document.getElementById("modalImg");
+      const captionInput = document.getElementById("captionInput");
+      const btnSave = document.getElementById("btnSave");
+      const btnCancel = document.getElementById("btnCancel");
+      const lightbox = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lbImg");
+      const lbClose = document.getElementById("lbClose");
+      const lbCaption = document.getElementById("lbCaption");
+
+      let activePhotoId = null;
+      let lightboxMode = false;
+
+      fileInput.addEventListener("change", (e) => handleFiles(e.target.files));
+
+      uploadZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        uploadZone.classList.add("drag-over");
+      });
+      uploadZone.addEventListener("dragleave", () =>
+        uploadZone.classList.remove("drag-over"),
+      );
+      uploadZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        uploadZone.classList.remove("drag-over");
+        handleFiles(e.dataTransfer.files);
+      });
+
+      function handleFiles(files) {
+        [...files].forEach((file) => {
+          if (!file.type.startsWith("image/")) return;
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const id = "p" + Date.now() + Math.random();
+            photos.push({ id, src: e.target.result, caption: "" });
+            renderGrid();
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function renderGrid() {
+        grid.innerHTML = "";
+        if (photos.length === 0) {
+          // show placeholders
+          const placeholders = [
+            { icon: "🌸", text: "Foto pertama<br>Fiora" },
+            { icon: "🎈", text: "Momen lucu<br>favoritmu" },
+            { icon: "🦋", text: "Senyum<br>manisnya" },
+            { icon: "⭐", text: "Foto<br>keluarga" },
+          ];
+          placeholders.forEach((p) => {
+            const d = document.createElement("div");
+            d.className = "placeholder-card";
+            d.innerHTML = `<span class="ph-icon">${p.icon}</span>${p.text}`;
+            grid.appendChild(d);
+          });
+          return;
+        }
+
+        photos.forEach((photo, idx) => {
+          const card = document.createElement("div");
+          card.className = "photo-card";
+          card.style.animationDelay = idx * 0.07 + "s";
+
+          const img = document.createElement("img");
+          img.src = photo.src;
+          img.alt = photo.caption || "Foto Fiora";
+
+          const removeBtn = document.createElement("button");
+          removeBtn.className = "remove-btn";
+          removeBtn.innerHTML = "✕";
+          removeBtn.title = "Hapus foto";
+          removeBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            photos = photos.filter((p) => p.id !== photo.id);
+            renderGrid();
+          });
+
+          const capBadge = document.createElement("div");
+          capBadge.className = "caption-badge";
+          capBadge.textContent = photo.caption || "Klik untuk keterangan…";
+
+          card.appendChild(img);
+          card.appendChild(removeBtn);
+          card.appendChild(capBadge);
+
+          // single click → caption modal
+          let clickTimer;
+          card.addEventListener("click", () => {
+            clearTimeout(clickTimer);
+            clickTimer = setTimeout(() => {
+              openCaptionModal(photo);
+            }, 200);
+          });
+
+          // double click → lightbox
+          card.addEventListener("dblclick", () => {
+            clearTimeout(clickTimer);
+            openLightbox(photo);
+          });
+
+          grid.appendChild(card);
+        });
+      }
+
+      function openCaptionModal(photo) {
+        activePhotoId = photo.id;
+        modalImg.src = photo.src;
+        captionInput.value = photo.caption;
+        captionModal.classList.add("open");
+        setTimeout(() => captionInput.focus(), 100);
+      }
+
+      btnSave.addEventListener("click", () => {
+        const photo = photos.find((p) => p.id === activePhotoId);
+        if (photo) photo.caption = captionInput.value;
+        captionModal.classList.remove("open");
+        renderGrid();
+      });
+
+      btnCancel.addEventListener("click", () =>
+        captionModal.classList.remove("open"),
+      );
+      captionInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") btnSave.click();
+      });
+      captionModal.addEventListener("click", (e) => {
+        if (e.target === captionModal) captionModal.classList.remove("open");
+      });
+
+      function openLightbox(photo) {
+        lbImg.src = photo.src;
+        lbCaption.textContent = photo.caption || "";
+        lightbox.classList.add("open");
+      }
+      lbClose.addEventListener("click", () =>
+        lightbox.classList.remove("open"),
+      );
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox || e.target === lbImg)
+          lightbox.classList.remove("open");
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          captionModal.classList.remove("open");
+          lightbox.classList.remove("open");
+        }
+      });
+
+      renderGrid();
+    </script>
+  </body>
+</html>
