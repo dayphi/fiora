@@ -553,25 +553,49 @@
       }
 
       /* ---- MUSIC BTN ---- */
-      .music-btn {
+      /* ---- FIXED BOTTOM BUTTONS ---- */
+      .fixed-controls {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background: linear-gradient(135deg, var(--pink), var(--lavender));
-        color: #fff;
-        border: none;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+      }
+      .music-btn,
+      .scroll-btn {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: #7b5ea7;
+        border: 1px solid rgba(179, 136, 255, 0.3);
         border-radius: 50px;
         padding: 12px 20px;
         font-family: "Nunito", sans-serif;
         font-weight: 800;
         font-size: 1rem;
         cursor: pointer;
-        box-shadow: 0 4px 15px rgba(179, 136, 255, 0.4);
-        z-index: 100;
-        transition: transform 0.2s;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition:
+          transform 0.2s,
+          background 0.2s,
+          opacity 0.6s ease;
       }
-      .music-btn:hover {
+      .music-btn.btn-hidden,
+      .scroll-btn.btn-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .music-btn:hover,
+      .scroll-btn:hover {
         transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.4);
+      }
+      .scroll-btn.active {
+        background: rgba(77, 208, 196, 0.2);
+        border-color: rgba(77, 208, 196, 0.4);
       }
 
       /* ---- EMPTY PLACEHOLDER CARDS ---- */
@@ -708,9 +732,13 @@
           font-size: 0.65rem;
           padding: 0.4rem 0.3rem 0.3rem;
         }
-        .music-btn {
+        .fixed-controls {
           bottom: 12px;
           right: 12px;
+          gap: 8px;
+        }
+        .music-btn,
+        .scroll-btn {
           padding: 10px 14px;
           font-size: 0.85rem;
           border-radius: 40px;
@@ -800,7 +828,16 @@
       id="ytplayer"
       style="position: absolute; top: -9999px; left: -9999px"
     ></div>
-    <button id="musicToggle" class="music-btn">🎵 Tunggu Sebentar...</button>
+
+    <!-- FIXED CONTROLS -->
+    <div class="fixed-controls">
+      <button
+        id="scrollToggle"
+        class="scroll-btn"
+        style="display: none"
+      ></button>
+      <button id="musicToggle" class="music-btn">🎵 Tunggu Sebentar...</button>
+    </div>
 
     <div class="page">
       <!-- HERO -->
@@ -836,14 +873,9 @@
         Tap foto untuk opsi · Ketuk dua kali untuk memperbesar
       </p>
 
-      <!-- Upload Zone -->
-      <div class="upload-zone" id="uploadZone">
+      <!-- Upload Zone (hidden - foto disimpan di GitHub) -->
+      <div class="upload-zone" id="uploadZone" style="display: none">
         <input type="file" id="fileInput" accept="image/*" multiple />
-        <div class="upload-icon">🖼️</div>
-        <div class="upload-text">Klik atau seret foto ke sini</div>
-        <div class="upload-hint">
-          Mendukung JPG, PNG, WEBP · Bisa pilih banyak sekaligus
-        </div>
       </div>
 
       <!-- Grid -->
@@ -1045,6 +1077,8 @@
           } else {
             player.playVideo();
             musicToggle.innerHTML = "⏸️ Pause Music";
+            // Hide music button on first play
+            musicToggle.classList.add("btn-hidden");
           }
           isMusicPlaying = !isMusicPlaying;
         });
@@ -1062,18 +1096,21 @@
       const fileInput = document.getElementById("fileInput");
       const uploadZone = document.getElementById("uploadZone");
 
-      // PANDUAN UNTUK GITHUB PAGES:
-      // Jika ingin foto langsung ada saat web dibuka (tanpa harus upload manual tiap kali refresh),
-      // Hapus `let photos = [];` di bawah, lalu ganti menjadi seperti ini:
+      // CARA PAKAI DI GITHUB PAGES:
+      // 1. Taruh file foto (jpg/png/webp) di folder yang sama dengan index.html di repo GitHub
+      // 2. Tambahkan entry di array photos di bawah ini
+      // 3. Ganti 'src' dengan nama file foto yang sudah di-push ke GitHub
+      // 4. Isi 'caption' dengan keterangan foto
       //
-      // let photos = [
-      //   { id: '1', src: 'foto1.jpg', caption: 'Momen pertama Fiora 💕' },
-      //   { id: '2', src: 'foto2.jpg', caption: 'Senyum manisnya' },
-      //   { id: '3', src: 'foto3.png', caption: 'Foto keluarga' }
-      // ];
-      //
-      // Pastikan file foto1.jpg, foto2.jpg diletakkan di folder yang sama dengan file HTML ini saat di-push ke GitHub.
-      let photos = []; // {id, src, caption}
+      // Contoh:
+      let photos = [
+        { id: '1', src: 'foto1.jpg', caption: 'Momen pertama Fiora 💕' },
+        { id: '2', src: 'foto2.jpg', caption: 'Senyum manisnya ✨' },
+        { id: '3', src: 'foto3.jpg', caption: 'Foto keluarga 👨‍👩‍👧' },
+        { id: '4', src: 'foto4.jpg', caption: 'Si kecil yang lucu 🎀' },
+        { id: '5', src: 'foto5.jpg', caption: 'Hari bahagia 🎂' },
+        { id: '6', src: 'foto6.jpg', caption: 'Canda tawa bersama 🌸' },
+      ];
 
       const captionModal = document.getElementById("captionModal");
       const modalImg = document.getElementById("modalImg");
@@ -1266,6 +1303,83 @@
       });
 
       renderGrid();
+
+      /* =================== AUTO SCROLL =================== */
+      const scrollToggle = document.getElementById("scrollToggle");
+      let autoScrolling = false;
+      let scrollRAF = null;
+      const SCROLL_SPEED = 0.3; // pixels per frame
+
+      function autoScroll() {
+        if (!autoScrolling) return;
+        const maxScroll =
+          document.documentElement.scrollHeight - window.innerHeight;
+        if (window.scrollY >= maxScroll - 1) {
+          stopAutoScroll();
+          return;
+        }
+        window.scrollBy(0, SCROLL_SPEED);
+        scrollRAF = requestAnimationFrame(autoScroll);
+      }
+
+      function startAutoScroll() {
+        autoScrolling = true;
+        scrollToggle.textContent = "⏸ Pause Scroll";
+        scrollToggle.classList.add("active");
+        scrollRAF = requestAnimationFrame(autoScroll);
+      }
+
+      function stopAutoScroll() {
+        autoScrolling = false;
+        if (scrollRAF) cancelAnimationFrame(scrollRAF);
+        scrollToggle.textContent = "▼ Auto Scroll";
+        scrollToggle.classList.remove("active");
+      }
+
+      // Auto-start scroll after 5 second countdown
+      let countdownTimer;
+      let countdown = 10;
+
+      function startCountdown() {
+        scrollToggle.textContent = `▼ Scroll dalam ${countdown}...`;
+        countdownTimer = setInterval(() => {
+          countdown--;
+          if (countdown <= 0) {
+            clearInterval(countdownTimer);
+            startAutoScroll();
+            scrollToggle.classList.add("btn-hidden");
+          } else {
+            scrollToggle.textContent = `▼ Scroll dalam ${countdown}...`;
+          }
+        }, 1000);
+      }
+
+      // Start countdown on page load
+      startCountdown();
+
+      // Click to skip countdown and scroll immediately
+      scrollToggle.addEventListener("click", () => {
+        clearInterval(countdownTimer);
+        startAutoScroll();
+        scrollToggle.classList.add("btn-hidden");
+      });
+
+      // Pause auto-scroll on user interaction
+      let userScrollTimeout;
+      window.addEventListener(
+        "wheel",
+        () => {
+          if (autoScrolling) stopAutoScroll();
+        },
+        { passive: true },
+      );
+      window.addEventListener(
+        "touchmove",
+        () => {
+          if (autoScrolling) stopAutoScroll();
+        },
+        { passive: true },
+      );
     </script>
   </body>
 </html>
