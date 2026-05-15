@@ -592,6 +592,202 @@
       .placeholder-card .ph-icon {
         font-size: 2.5rem;
       }
+
+      /* ---- PHOTO ACTION OVERLAY (MOBILE) ---- */
+      .photo-actions {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        gap: 0;
+        opacity: 0;
+        transition: opacity 0.2s;
+        pointer-events: none;
+      }
+      .photo-card:hover .photo-actions,
+      .photo-card.touched .photo-actions {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .photo-card.touched .caption-badge {
+        opacity: 0;
+      }
+      .photo-card.touched .remove-btn {
+        opacity: 1;
+      }
+      .action-btn {
+        flex: 1;
+        border: none;
+        padding: 0.55rem 0;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 800;
+        cursor: pointer;
+        color: #fff;
+      }
+      .action-btn.act-caption {
+        background: rgba(179, 136, 255, 0.9);
+        border-radius: 0 0 0 14px;
+      }
+      .action-btn.act-view {
+        background: rgba(255, 110, 180, 0.9);
+        border-radius: 0 0 14px 0;
+      }
+
+      /* ---- MOBILE RESPONSIVE ---- */
+      @media (max-width: 600px) {
+        .page {
+          padding: 1rem 0.8rem 3rem;
+        }
+        .hero {
+          padding: 2rem 0.5rem 1.2rem;
+        }
+        .greeting {
+          font-size: clamp(1.8rem, 8vw, 2.6rem);
+        }
+        .name {
+          font-size: clamp(1.5rem, 7vw, 2.2rem);
+          margin-bottom: 0.8rem;
+        }
+        .badge-age {
+          font-size: 0.85rem;
+          padding: 0.35rem 1rem;
+        }
+        .cake-wrap {
+          font-size: 2.5rem;
+          margin: 0.6rem 0;
+        }
+        .message {
+          font-size: 0.95rem;
+          margin-bottom: 1.2rem;
+          line-height: 1.6;
+          padding: 0 0.3rem;
+        }
+        .divider {
+          font-size: 1.2rem;
+          letter-spacing: 0.25rem;
+          margin: 1rem 0;
+        }
+        .section-title {
+          font-size: 1.35rem;
+        }
+        .section-sub {
+          font-size: 0.8rem;
+          margin-bottom: 1rem;
+          padding: 0 0.5rem;
+        }
+        .upload-zone {
+          padding: 1.5rem 1rem;
+          border-radius: 16px;
+          margin-bottom: 1.2rem;
+        }
+        .upload-icon {
+          font-size: 2.2rem;
+        }
+        .upload-text {
+          font-size: 0.9rem;
+        }
+        .upload-hint {
+          font-size: 0.75rem;
+        }
+        .photo-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.6rem;
+        }
+        .photo-card {
+          border-width: 3px;
+          border-radius: 14px;
+        }
+        .photo-card .remove-btn {
+          width: 26px;
+          height: 26px;
+          font-size: 12px;
+        }
+        .photo-card .caption-badge {
+          font-size: 0.65rem;
+          padding: 0.4rem 0.3rem 0.3rem;
+        }
+        .music-btn {
+          bottom: 12px;
+          right: 12px;
+          padding: 10px 14px;
+          font-size: 0.85rem;
+          border-radius: 40px;
+        }
+        .modal-box {
+          padding: 1.2rem;
+          border-radius: 18px;
+          width: 92%;
+        }
+        .modal-box img {
+          max-height: 200px;
+          border-radius: 10px;
+        }
+        .modal-box input[type="text"] {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.9rem;
+          border-radius: 10px;
+        }
+        .btn {
+          padding: 0.5rem 1.2rem;
+          font-size: 0.85rem;
+        }
+        .lightbox .lb-close {
+          top: 1rem;
+          right: 1rem;
+          font-size: 1.6rem;
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 50%;
+        }
+        .lightbox .lb-caption {
+          font-size: 0.85rem;
+          padding: 0 1rem;
+          text-align: center;
+        }
+        .footer {
+          font-size: 0.8rem;
+          margin-top: 2rem;
+        }
+        .placeholder-card {
+          border-radius: 14px;
+          font-size: 0.75rem;
+          border-width: 3px;
+        }
+        .placeholder-card .ph-icon {
+          font-size: 1.8rem;
+        }
+        .stars-deco {
+          padding: 0 0.8rem;
+        }
+        .star {
+          font-size: 1.3rem;
+        }
+        .photo-actions {
+          opacity: 0;
+        }
+        .photo-card.touched .photo-actions {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .greeting {
+          font-size: 1.6rem;
+        }
+        .name {
+          font-size: 1.35rem;
+        }
+        .photo-grid {
+          gap: 0.5rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -637,7 +833,7 @@
       <!-- PHOTO GALLERY -->
       <div class="section-title">📸 Momen Berharga Fiora</div>
       <p class="section-sub">
-        Klik foto untuk menambahkan keterangan · Klik foto untuk memperbesar
+        Tap foto untuk opsi · Ketuk dua kali untuk memperbesar
       </p>
 
       <!-- Upload Zone -->
@@ -763,7 +959,9 @@
         }
       }
 
-      for (let i = 0; i < 120; i++) pieces.push(new Piece());
+      const isMobile = window.innerWidth < 600;
+      const CONFETTI_COUNT = isMobile ? 40 : 120;
+      for (let i = 0; i < CONFETTI_COUNT; i++) pieces.push(new Piece());
 
       function animate() {
         ctx.clearRect(0, 0, W, H);
@@ -804,7 +1002,8 @@
   </svg>`;
         balloonsWrap.appendChild(el);
       }
-      for (let i = 0; i < 18; i++) createBalloon();
+      const BALLOON_COUNT = isMobile ? 8 : 18;
+      for (let i = 0; i < BALLOON_COUNT; i++) createBalloon();
 
       /* =================== AUDIO (YOUTUBE) =================== */
       let player;
@@ -957,28 +1156,68 @@
 
           const capBadge = document.createElement("div");
           capBadge.className = "caption-badge";
-          capBadge.textContent = photo.caption || "Klik untuk keterangan…";
+          capBadge.textContent = photo.caption || "Tap untuk opsi…";
+
+          // Mobile-friendly action buttons
+          const actions = document.createElement("div");
+          actions.className = "photo-actions";
+          const btnCaption = document.createElement("button");
+          btnCaption.className = "action-btn act-caption";
+          btnCaption.textContent = "✏️ Keterangan";
+          btnCaption.addEventListener("click", (e) => {
+            e.stopPropagation();
+            openCaptionModal(photo);
+          });
+          const btnView = document.createElement("button");
+          btnView.className = "action-btn act-view";
+          btnView.textContent = "🔍 Lihat";
+          btnView.addEventListener("click", (e) => {
+            e.stopPropagation();
+            openLightbox(photo);
+          });
+          actions.appendChild(btnCaption);
+          actions.appendChild(btnView);
 
           card.appendChild(img);
           card.appendChild(removeBtn);
           card.appendChild(capBadge);
+          card.appendChild(actions);
 
-          // single click → caption modal
-          let clickTimer;
-          card.addEventListener("click", () => {
-            clearTimeout(clickTimer);
-            clickTimer = setTimeout(() => {
-              openCaptionModal(photo);
-            }, 200);
-          });
-
-          // double click → lightbox
-          card.addEventListener("dblclick", () => {
-            clearTimeout(clickTimer);
-            openLightbox(photo);
-          });
+          // Touch: tap toggles action overlay; Desktop: click/dblclick
+          const touchDevice = "ontouchstart" in window;
+          if (touchDevice) {
+            card.addEventListener("click", (e) => {
+              e.stopPropagation();
+              // Remove touched from all other cards
+              document.querySelectorAll(".photo-card.touched").forEach((c) => {
+                if (c !== card) c.classList.remove("touched");
+              });
+              card.classList.toggle("touched");
+            });
+          } else {
+            let clickTimer;
+            card.addEventListener("click", () => {
+              clearTimeout(clickTimer);
+              clickTimer = setTimeout(() => {
+                openCaptionModal(photo);
+              }, 200);
+            });
+            card.addEventListener("dblclick", () => {
+              clearTimeout(clickTimer);
+              openLightbox(photo);
+            });
+          }
 
           grid.appendChild(card);
+        });
+
+        // Dismiss touched cards when tapping elsewhere
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".photo-card")) {
+            document
+              .querySelectorAll(".photo-card.touched")
+              .forEach((c) => c.classList.remove("touched"));
+          }
         });
       }
 
